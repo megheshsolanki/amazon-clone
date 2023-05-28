@@ -1,5 +1,5 @@
 import "./App.css";
-import Payment from "./components/Payment"
+import Payment from './components/Payment'
 import Checkout from "./components/Checkout";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -9,6 +9,10 @@ import Register from "./components/Register";
 import { useStateValue } from "./StateProvider";
 import { useEffect } from "react";
 import { auth } from "./firebase";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const promise = loadStripe("pk_test_51NBtNDSDJVqAknE0znhUOYyvVE0gKKQ9BFcvazJtvNvAj1LAduYsiMwmiGPrzjLFM0raQIp2FybeOVBn3gqr2V80003lTcaxVU");
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -28,7 +32,7 @@ function App() {
         });
       }
     });
-  },[]);
+  }, []);
 
   const Router = createBrowserRouter([
     {
@@ -69,8 +73,8 @@ function App() {
       path: "/payment",
       element: (
         <>
-          <Header/>
-          <Payment/>
+          <Header />
+          <Payment />
         </>
       ),
     },
